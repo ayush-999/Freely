@@ -9,7 +9,7 @@ export function PostsPage() {
           <p className="text-sm tracking-[0.2em] text-sky-400 uppercase">
             Community
           </p>
-          <h2 className="mt-2 text-3xl font-semibold text-white">
+          <h2 className="mt-2 text-3xl font-semibold text-foreground">
             Microblogging
           </h2>
         </div>

@@ -5,10 +5,10 @@ interface EmptyStateProps {
 
 export function EmptyState({ title, description }: EmptyStateProps) {
   return (
-    <div className="rounded-xl border border-dashed border-slate-700 bg-slate-900 p-8 text-center">
-      <h3 className="text-lg font-medium text-slate-100">{title}</h3>
+    <div className="rounded-xl border border-border bg-card p-8 text-center">
+      <h3 className="text-lg font-medium text-card-foreground">{title}</h3>
       {description ? (
-        <p className="mt-2 text-sm text-slate-400">{description}</p>
+        <p className="mt-2 text-sm text-muted-foreground">{description}</p>
       ) : null}
     </div>
   )

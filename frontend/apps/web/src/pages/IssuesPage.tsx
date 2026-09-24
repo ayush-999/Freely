@@ -10,7 +10,9 @@ export function IssuesPage() {
             <p className="text-sm tracking-[0.2em] text-sky-400 uppercase">
               Reports
             </p>
-            <h2 className="mt-2 text-3xl font-semibold text-white">Issues</h2>
+            <h2 className="mt-2 text-3xl font-semibold text-foreground">
+              Issues
+            </h2>
           </div>
         </div>
 

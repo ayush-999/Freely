@@ -94,7 +94,7 @@ function AppRoutes() {
 
 export function AppRouter() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/moderator">
       <Suspense fallback={<RouteLoader />}>
         <AppRoutes />
       </Suspense>

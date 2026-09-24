@@ -25,6 +25,16 @@ Freely is a governance platform focused on issue reporting and microblogging. Th
 - Lucide React
 - Tailwind-based shared UI package
 
+## Default Login Accounts
+
+These are the local demo credentials available for the frontend applications:
+
+- Web app: `user@freely.test` / `admin123`
+- Admin app: `admin@freely.test` / `admin123`
+- Moderator app: `mod@freely.test` / `admin123`
+
+Additional users can be created from the sign-up page and will be stored locally in the app-specific demo data.
+
 ## Repository Structure
 
 ```bash

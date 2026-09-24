@@ -2,8 +2,8 @@ import { createSlice, type PayloadAction } from "@reduxjs/toolkit"
 
 import type { AuthState, User } from "@/types/auth"
 
-const storageKey = "freely-web-auth-state"
-const tokenKey = "freely-web-auth-token"
+const storageKey = "freely-moderator-auth-state"
+const tokenKey = "freely-moderator-auth-token"
 
 const readStoredAuth = (): AuthState => {
   if (typeof window === "undefined") {

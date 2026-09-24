@@ -1,6 +1,6 @@
 import { api } from "@/services/api"
 
-const appPrefix = "freely-web"
+const appPrefix = "freely-moderator"
 const DEMO_USERS_KEY = `${appPrefix}-demo-users`
 
 function getDemoUsers() {

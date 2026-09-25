@@ -29,3 +29,8 @@ export async function getCurrentUser() {
   const response = await api.get("/me")
   return response.data
 }
+
+export async function signOut() {
+  const response = await api.post("/logout")
+  return response.data
+}

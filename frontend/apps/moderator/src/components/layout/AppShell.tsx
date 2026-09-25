@@ -6,6 +6,7 @@ import { useTheme } from "@/components/theme-provider"
 import { useAppDispatch } from "@/hooks/useAppDispatch"
 import { useAppSelector } from "@/hooks/useAppSelector"
 import { logout } from "@/redux/slices/authSlice"
+import { signOut } from "@/services/authService"
 
 interface AppShellProps {
   children: ReactNode
@@ -31,7 +32,8 @@ export function AppShell({ children }: AppShellProps) {
     navigate(isAuthenticated ? "/dashboard" : "/login")
   }
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
+    await signOut().catch(() => undefined)
     dispatch(logout())
     navigate("/login", { replace: true })
   }

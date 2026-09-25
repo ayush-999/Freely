@@ -46,6 +46,12 @@ const ForgotPasswordPage = lazy(() =>
   }))
 )
 
+const NotFoundPage = lazy(() =>
+  import("@/pages/not-found/NotFoundPage").then((module) => ({
+    default: module.NotFoundPage,
+  }))
+)
+
 function PublicOnlyRoute() {
   const isAuthenticated = useAppSelector((state) => state.auth.isAuthenticated)
 
@@ -82,12 +88,7 @@ function AppRoutes() {
         <Route path="/posts" element={<PostsPage />} />
       </Route>
 
-      <Route
-        path="*"
-        element={
-          <Navigate to={isAuthenticated ? "/dashboard" : "/login"} replace />
-        }
-      />
+      <Route path="*" element={<NotFoundPage />} />
     </Routes>
   )
 }

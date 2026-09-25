@@ -83,6 +83,13 @@ final class Config
         return self::env('DB_CHARSET', 'utf8mb4');
     }
 
+    public static function dbDriver(): string
+    {
+        $driver = strtolower(self::env('DB_DRIVER', 'pdo'));
+
+        return in_array($driver, ['pdo', 'mysqli'], true) ? $driver : 'pdo';
+    }
+
     public static function dbDsn(): string
     {
         return sprintf(

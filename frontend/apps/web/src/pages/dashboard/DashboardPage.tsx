@@ -1,7 +1,7 @@
 import { useState } from "react"
 
 import { Button } from "@workspace/ui/components/button"
-import { AppShell } from "@/components/layout/AppShell"
+import { DashboardLayout } from "@/layouts/dashboard/DashboardLayout"
 
 export function DashboardPage() {
   const [isSyncing, setIsSyncing] = useState(false)
@@ -12,7 +12,7 @@ export function DashboardPage() {
   }
 
   return (
-    <AppShell>
+    <DashboardLayout>
       <section className="space-y-6">
         <div className="flex items-center justify-between gap-4">
           <div>
@@ -50,6 +50,6 @@ export function DashboardPage() {
           </div>
         </div>
       </section>
-    </AppShell>
+    </DashboardLayout>
   )
 }

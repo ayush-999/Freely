@@ -8,6 +8,7 @@ import {
 } from "@/pages/AuthPages"
 import { DashboardPage } from "@/pages/DashboardPage"
 import { IssuesPage } from "@/pages/IssuesPage"
+import { NotFoundPage } from "@/pages/not-found/NotFoundPage"
 import { PostsPage } from "@/pages/PostsPage"
 
 function PublicOnlyRoute() {
@@ -46,12 +47,7 @@ export function AppRoutes() {
         <Route path="/posts" element={<PostsPage />} />
       </Route>
 
-      <Route
-        path="*"
-        element={
-          <Navigate to={isAuthenticated ? "/dashboard" : "/login"} replace />
-        }
-      />
+      <Route path="*" element={<NotFoundPage />} />
     </Routes>
   )
 }

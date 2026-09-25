@@ -11,38 +11,36 @@ import { RouteLoader } from "@/components/common/RouteLoader"
 import { useAppSelector } from "@/hooks/useAppSelector"
 
 const DashboardPage = lazy(() =>
-  import("@/pages/DashboardPage").then((module) => ({
+  import("@/pages/dashboard/DashboardPage").then((module) => ({
     default: module.DashboardPage,
   }))
 )
 
-const IssuesPage = lazy(() =>
-  import("@/pages/IssuesPage").then((module) => ({
-    default: module.IssuesPage,
-  }))
-)
-
-const PostsPage = lazy(() =>
-  import("@/pages/PostsPage").then((module) => ({
-    default: module.PostsPage,
-  }))
-)
-
 const LoginPage = lazy(() =>
-  import("@/pages/AuthPages").then((module) => ({
-    default: module.LoginPage,
+  import("@/layouts/auth/login/LoginLayout").then((module) => ({
+    default: module.LoginLayout,
   }))
 )
 
 const CreateAccountPage = lazy(() =>
-  import("@/pages/AuthPages").then((module) => ({
-    default: module.CreateAccountPage,
-  }))
+  import("@/layouts/auth/create-account/CreateAccountLayout").then(
+    (module) => ({
+      default: module.CreateAccountLayout,
+    })
+  )
 )
 
 const ForgotPasswordPage = lazy(() =>
-  import("@/pages/AuthPages").then((module) => ({
-    default: module.ForgotPasswordPage,
+  import("@/layouts/auth/forgot-password/ForgotPasswordLayout").then(
+    (module) => ({
+      default: module.ForgotPasswordLayout,
+    })
+  )
+)
+
+const NotFoundPage = lazy(() =>
+  import("@/pages/not-found/NotFoundPage").then((module) => ({
+    default: module.NotFoundPage,
   }))
 )
 
@@ -78,16 +76,9 @@ function AppRoutes() {
 
       <Route element={<ProtectedRoute />}>
         <Route path="/dashboard" element={<DashboardPage />} />
-        <Route path="/issues" element={<IssuesPage />} />
-        <Route path="/posts" element={<PostsPage />} />
       </Route>
 
-      <Route
-        path="*"
-        element={
-          <Navigate to={isAuthenticated ? "/dashboard" : "/login"} replace />
-        }
-      />
+      <Route path="*" element={<NotFoundPage />} />
     </Routes>
   )
 }

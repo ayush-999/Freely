@@ -23,6 +23,22 @@ function Button({
   const Comp = asChild ? Slot.Root : "button"
   const isDisabled = disabled || loading
 
+  const content = (
+    <>
+      {loading ? (
+        <span
+          aria-hidden="true"
+          className="inline-flex size-3.5 animate-spin rounded-full border-2 border-current border-t-transparent"
+        />
+      ) : null}
+      {asChild ? (
+        children
+      ) : (
+        <span className="inline-flex items-center">{children}</span>
+      )}
+    </>
+  )
+
   return (
     <Comp
       type={asChild ? undefined : (type ?? "button")}
@@ -37,15 +53,7 @@ function Button({
       )}
       {...props}
     >
-      {loading ? (
-        <span
-          aria-hidden="true"
-          className="inline-flex size-3.5 animate-spin rounded-full border-2 border-current border-t-transparent"
-        />
-      ) : null}
-      {children ? (
-        <span className="inline-flex items-center">{children}</span>
-      ) : null}
+      {content}
     </Comp>
   )
 }

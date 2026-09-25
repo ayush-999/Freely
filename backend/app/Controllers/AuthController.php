@@ -54,6 +54,7 @@ final class AuthController extends Controller
         $name = trim((string) ($payload['name'] ?? ''));
         $email = strtolower(trim((string) ($payload['email'] ?? '')));
         $password = (string) ($payload['password'] ?? '');
+        $role = strtolower(trim((string) ($payload['role'] ?? 'user')));
 
         if ($name === '' || $email === '' || $password === '') {
             $this->json(['message' => 'Name, email, and password are required.'], 400);
@@ -63,11 +64,15 @@ final class AuthController extends Controller
             $this->json(['message' => 'Password must be at least 6 characters long.'], 400);
         }
 
+        if (!in_array($role, ['user', 'admin', 'moderator'], true)) {
+            $this->json(['message' => 'Invalid role selected.'], 400);
+        }
+
         if ($this->userModel->findByEmail($email)) {
             $this->json(['message' => 'This email is already registered.'], 409);
         }
 
-        $user = $this->userModel->create($name, $email, $password);
+        $user = $this->userModel->create($name, $email, $password, $role);
 
         $this->json([
             'message' => 'Account created successfully. You can now sign in.',
@@ -109,14 +114,7 @@ final class AuthController extends Controller
             $this->json(['message' => 'Unauthenticated.'], 401);
         }
 
-        $this->json([
-            'user' => [
-                'id' => 'demo-user',
-                'name' => 'Freely User',
-                'email' => 'user@freely.test',
-                'role' => 'user',
-            ],
-        ]);
+        $this->json(['message' => 'No user context available for this session.'], 401);
     }
 
     public function notAllowed(): void

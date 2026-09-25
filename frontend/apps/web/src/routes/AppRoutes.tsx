@@ -1,14 +1,11 @@
 import { Navigate, Outlet, Route, Routes } from "react-router-dom"
 
 import { useAppSelector } from "@/hooks/useAppSelector"
-import {
-  CreateAccountPage,
-  ForgotPasswordPage,
-  LoginPage,
-} from "@/pages/AuthPages"
-import { DashboardPage } from "@/pages/DashboardPage"
-import { IssuesPage } from "@/pages/IssuesPage"
-import { PostsPage } from "@/pages/PostsPage"
+import { CreateAccountLayout } from "@/layouts/auth/create-account/CreateAccountLayout"
+import { ForgotPasswordLayout } from "@/layouts/auth/forgot-password/ForgotPasswordLayout"
+import { LoginLayout } from "@/layouts/auth/login/LoginLayout"
+import { DashboardPage } from "@/pages/dashboard/DashboardPage"
+import { NotFoundPage } from "@/pages/not-found/NotFoundPage"
 
 function PublicOnlyRoute() {
   const isAuthenticated = useAppSelector((state) => state.auth.isAuthenticated)
@@ -35,23 +32,16 @@ export function AppRoutes() {
       />
 
       <Route element={<PublicOnlyRoute />}>
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/create" element={<CreateAccountPage />} />
-        <Route path="/forgot" element={<ForgotPasswordPage />} />
+        <Route path="/login" element={<LoginLayout />} />
+        <Route path="/create" element={<CreateAccountLayout />} />
+        <Route path="/forgot" element={<ForgotPasswordLayout />} />
       </Route>
 
       <Route element={<ProtectedRoute />}>
         <Route path="/dashboard" element={<DashboardPage />} />
-        <Route path="/issues" element={<IssuesPage />} />
-        <Route path="/posts" element={<PostsPage />} />
       </Route>
 
-      <Route
-        path="*"
-        element={
-          <Navigate to={isAuthenticated ? "/dashboard" : "/login"} replace />
-        }
-      />
+      <Route path="*" element={<NotFoundPage />} />
     </Routes>
   )
 }
